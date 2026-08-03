@@ -104,8 +104,8 @@
     <h1>Friendship Day Was Yesterday... 🌸✨</h1>
     <p class="subtitle">...but celebrating you takes more than just one day! 💖</p>
 
-    <!-- Main Dynamic Hero Image (Default: hero.jpg) -->
-    <img id="main-hero" src="hero.jpg" alt="Featured Photo" class="hero-img">
+    <!-- Updated to match hero.jpeg -->
+    <img id="main-hero" src="hero.jpeg" alt="Featured Photo" class="hero-img">
 
     <!-- Interactive Badges -->
     <div class="badges">
@@ -126,24 +126,21 @@
   </div>
 
   <script>
-    // Local image filenames uploaded to your repo
+    // Updated to match your exact repository filenames & extensions
     const images = {
-      puppy: "puppy.jpg",
-      baller: "basketball.jpg",
-      bookworm: "book.jpg",
-      bougainvillea: "bougainvillea.jpg",
-      food: "food.jpg"
+      puppy: "puppy.jpeg",
+      baller: "basketball.jpeg",
+      bookworm: "book.jpeg",
+      bougainvillea: "Bougainvillea.jpeg",
+      food: "food.jpeg"
     };
 
     function changeImage(category, emoji) {
       const hero = document.getElementById("main-hero");
-      hero.style.opacity = 0; // Quick fade out
+      hero.style.opacity = 0;
       setTimeout(() => {
-        // Fallback to existing src if file hasn't been uploaded yet
-        if (images[category]) {
-          hero.src = images[category];
-        }
-        hero.style.opacity = 1; // Fade back in
+        hero.src = images[category];
+        hero.style.opacity = 1;
       }, 200);
       popEmoji(emoji);
     }
