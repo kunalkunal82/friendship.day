@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SRK Dialogue Corner 🎬✨</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fdf0f4;
+      color: #2d3436;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      text-align: center;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      max-width: 450px;
+      width: 88%;
+      border: 3px solid #e84393;
+    }
+    h1 { color: #e84393; font-size: 1.5rem; }
+    
+    .srk-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 16px;
+      margin: 15px 0;
+    }
+
+    .music-btn {
+      background: #ffeaa7;
+      border: 2px dashed #e84393;
+      padding: 10px 20px;
+      border-radius: 30px;
+      margin: 10px auto 15px auto;
+      font-weight: bold;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .quote-box {
+      background-color: #f8f9fa;
+      border-left: 5px solid #e84393;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px 0;
+      font-size: 1rem;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.4;
+    }
+
+    .btn {
+      background-color: #e84393;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 0.95rem;
+      font-weight: bold;
+      border-radius: 25px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 15px;
+      color: #636e72;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Audio Element with explicit controls -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="https://ia800908.us.archive.org/24/items/TujheDekhaToYehJaanaSanamInstrumentalDDLJ/Tujhe%20Dekha%20To%20Yeh%20Jaana%20Sanam%20-%20Instrumental.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="container">
+    <h1>Pure Bestie SRK Drama 🎬🍿</h1>
+
+    <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80" alt="Cinema Vibe" class="srk-img">
+
+    <!-- Manual Click to Play Music safely -->
+    <div class="music-btn" id="music-btn" onclick="playMusic()">
+      🎻 <span id="music-text">Tap to Play SRK Violin BGM</span> 🎶
+    </div>
+
+    <div class="quote-box" id="quote-display">
+      "Rahul... naam toh suna hoga?" But honestly, no name compares to my main bestie! 🎬✨
+    </div>
+
+    <button class="btn" onclick="nextQuote()">Generate Another SRK Line 🍿</button>
+
+    <br>
+    <a href="index.html" class="back-btn">⬅️ Back to Main Page</a>
+  </div>
+
+  <script>
+    const audio = document.getElementById("bg-music");
+    let isPlaying = false;
+
+    function playMusic() {
+      if (!isPlaying) {
+        audio.play().then(() => {
+          document.getElementById("music-text").innerText = "Pause Music 🎻";
+          isPlaying = true;
+        }).catch(err => console.log("Audio play failed:", err));
+      } else {
+        audio.pause();
+        document.getElementById("music-text").innerText = "Tap to Play SRK Violin BGM";
+        isPlaying = false;
+      }
+    }
+
+    const srkDialogues = [
+      "\"Rahul... naam toh suna hoga?\" But honestly, no name compares to my main bestie! 🎬✨",
+      "\"Bade bade deshon mein aisi chhoti chhoti baatein hoti rehti hain, Senorita!\" So what if Friendship Day was yesterday? You're the best every single day! 🍿",
+      "\"Dosti ka ek usool hai madam... NO SORRY, NO THANK YOU!\" Just endless Butter Chicken & Rasmalai treats! 🍛🫓🍮",
+      "\"Kehte hain agar kisi cheez ko dil se chaho... toh poori kainaat use tumse milane ki koshish mein lag jaati hai.\" (Like finding the ultimate book + puppy combination! 🐶📚)",
+      "\"Picture abhi baaki hai meri dost!\" Here's to 100 more travel trips, beach days, and basketball matches together! 🏀🌊"
+    ];
+
+    function nextQuote() {
+      const randomQuote = srkDialogues[Math.floor(Math.random() * srkDialogues.length)];
+      document.getElementById("quote-display").innerText = randomQuote;
+      if (!isPlaying) playMusic();
+    }
+  </script>
+</body>
+</html>

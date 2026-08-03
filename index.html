@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For My Favorite Human 🌺✨</title>
+  <style>
+    :root {
+      /* Ocean / Beach Vibe */
+      --bg-color: #e0f7fa;
+      --card-bg: #ffffff;
+      --primary: #00838f;
+      --primary-hover: #006064;
+      --text: #2d3436;
+    }
+
+    body {
+      margin: 0;
+      padding: 30px 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    /* Mountain / Nature Mode */
+    body.mountain-mode {
+      --bg-color: #e8f5e9;
+      --primary: #2e7d32;
+      --primary-hover: #1b5e20;
+    }
+
+    .container {
+      text-align: center;
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      max-width: 450px;
+      width: 88%;
+      border: 3px solid var(--primary);
+      transition: border-color 0.4s ease;
+    }
+
+    h1 { color: var(--primary); font-size: 1.6rem; margin-bottom: 5px; }
+    p.subtitle { font-style: italic; color: #636e72; margin-top: 5px; font-size: 0.95rem; }
+
+    .hero-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 16px;
+      margin: 15px 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .badges { display: flex; justify-content: center; gap: 8px; margin: 15px 0; flex-wrap: wrap; }
+    .badge { 
+      background: #f1f2f6; 
+      padding: 8px 14px; 
+      border-radius: 20px; 
+      font-size: 0.85rem; 
+      font-weight: bold; 
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+    .badge:hover { transform: scale(1.05); background-color: #dfe4ea; }
+
+    .nav-menu { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+
+    .nav-btn {
+      background-color: var(--primary);
+      color: white;
+      text-decoration: none;
+      padding: 14px 20px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 25px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s, background-color 0.3s;
+      display: block;
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-btn:hover { transform: translateY(-2deg); background-color: var(--primary-hover); }
+    .nav-btn.secondary { background-color: transparent; color: var(--primary); border: 2px solid var(--primary); }
+    .nav-btn.spidey { background: linear-gradient(45deg, #d63031, #0984e3); color: white; }
+
+    .floating-item { position: absolute; animation: float 4s linear infinite; font-size: 24px; pointer-events: none; }
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Friendship Day Was Yesterday... 🌸✨</h1>
+    <p class="subtitle">...but celebrating you takes more than just one day! 💖</p>
+
+    <!-- Main Dynamic Image (Default: Scenic View) -->
+    <img id="main-hero" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Featured Photo" class="hero-img">
+
+    <!-- Interactive Badges -->
+    <div class="badges">
+      <span class="badge" onclick="changeImage('puppy', '🐶')">Puppies 🐶</span>
+      <span class="badge" onclick="changeImage('baller', '🏀')">Baller 🏀</span>
+      <span class="badge" onclick="changeImage('bookworm', '📚')">Bookworm 📚</span>
+      <span class="badge" onclick="changeImage('bougainvillea', '🌺')">Bougainvillea 🌺</span>
+      <span class="badge" onclick="changeImage('food', '🍛')">Butter Chicken 🍛</span>
+    </div>
+
+    <!-- Navigation Menu -->
+    <div class="nav-menu">
+      <a href="srk.html" class="nav-btn">🎬 SRK Dialogue Corner</a>
+      <a href="travel.html" class="nav-btn">✈️ Future Travels & Wishes</a>
+      <a href="marvel.html" class="nav-btn spidey">🕸️ Multiverse Card</a>
+      <button class="nav-btn secondary" onclick="toggleVibe()">🎨 Switch Theme ☀️ / 🌲</button>
+    </div>
+  </div>
+
+  <script>
+    // Image Repository for the Badges
+    const images = {
+      puppy: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80",
+      baller: "https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=800&q=80",
+      bookworm: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=800&q=80",
+      bougainvillea: "https://images.unsplash.com/photo-1528183429752-a97d0bf99b5a?auto=format&fit=crop&w=800&q=80",
+      food: "https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&w=800&q=80"
+    };
+
+    function changeImage(category, emoji) {
+      const hero = document.getElementById("main-hero");
+      hero.style.opacity = 0; // Quick fade out
+      setTimeout(() => {
+        hero.src = images[category];
+        hero.style.opacity = 1; // Fade back in
+      }, 200);
+      popEmoji(emoji);
+    }
+
+    function toggleVibe() {
+      document.body.classList.toggle("mountain-mode");
+      popEmoji(document.body.classList.contains("mountain-mode") ? '🌲' : '🌊');
+    }
+
+    function popEmoji(symbol) {
+      for (let i = 0; i < 5; i++) {
+        const item = document.createElement("div");
+        item.classList.add("floating-item");
+        item.innerHTML = symbol;
+        item.style.left = Math.random() * 90 + 5 + "vw";
+        item.style.animationDuration = Math.random() * 2 + 2 + "s";
+        document.body.appendChild(item);
+        setTimeout(() => item.remove(), 3500);
+      }
+    }
+  </script>
+</body>
+</html>
